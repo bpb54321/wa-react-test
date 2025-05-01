@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { useQuery } from '@apollo/client'
@@ -17,6 +17,8 @@ import Pagination from '../Pagination'
 
 const POSTS_QUERY_LIMIT = 10
 const INITIAL_POSTS_PAGE = 1
+
+const MemoizedExpensiveTree = memo(ExpensiveTree)
 
 function Root() {
   const [count, setCount] = useState(0)
@@ -87,7 +89,7 @@ function Root() {
       <Column>
         <h4>Slow rendering - Fixed!</h4>
         <FastRenderingTextInput />
-        <ExpensiveTree />
+        <MemoizedExpensiveTree />
 
         <h4>Closures?</h4>
         <p>You clicked {count} times</p>
