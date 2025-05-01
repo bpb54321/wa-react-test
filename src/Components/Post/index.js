@@ -44,10 +44,12 @@ function Post() {
 
   const { data, loading } = useQuery(postQuery, { variables: { id: postId } })
 
-  const post = data?.post || {}
+  const post = data?.post
 
   useEffect(() => {
-    setComments(post.comments?.data || [])
+    if (post) {
+      setComments(post.comments.data)
+    }
   }, [post])
 
   return (
