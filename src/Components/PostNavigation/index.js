@@ -43,7 +43,14 @@ function PostNavigation({ currentPost }) {
   return (
     <div>
       {previousPost ? (
-        <NavLink to={POST(previousPost.id)}>Previous Post</NavLink>
+        <NavLink
+          style={{
+            marginRight: '3rem',
+          }}
+          to={POST(previousPost.id)}
+        >
+          Previous Post
+        </NavLink>
       ) : null}
       {nextPost ? <NavLink to={POST(nextPost.id)}>Next Post</NavLink> : null}
     </div>
