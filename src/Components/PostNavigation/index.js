@@ -10,18 +10,21 @@ import { POST } from 'Router/routes'
 
 const NUMBER_LARGER_THAN_TOTAL_POST_COUNT = 1000
 
-function getPreviousPost(posts, currentPost) {
-  return {
-    __typename: 'Post',
-    id: '1',
+function getPreviousPost(posts, currentPostIndex) {
+  if (currentPostIndex <= 0) {
+    return null
   }
+  return posts[currentPostIndex - 1]
 }
 
-function getNextPost(posts, currentPost) {
-  return {
-    __typename: 'Post',
-    id: '3',
+function getNextPost(posts, currentPostIndex) {
+  if (currentPostIndex < 0) {
+    return null
   }
+  if (currentPostIndex >= posts.length) {
+    return null
+  }
+  return posts[currentPostIndex + 1]
 }
 
 function PostNavigation({ currentPost }) {
@@ -29,9 +32,9 @@ function PostNavigation({ currentPost }) {
     variables: { page: 1, limit: NUMBER_LARGER_THAN_TOTAL_POST_COUNT },
   })
   const posts = data?.posts.data || []
-  const postIndex = posts.findIndex(post => post.id === currentPost.id)
-  const previousPost = postIndex >= 0 ? getPreviousPost() : null
-  const nextPost = postIndex >= 0 ? getNextPost() : null
+  const currentPostIndex = posts.findIndex(post => post.id === currentPost.id)
+  const previousPost = getPreviousPost(posts, currentPostIndex)
+  const nextPost = getNextPost(posts, currentPostIndex)
 
   if (loading) {
     return <p>Loading...</p>
