@@ -82,7 +82,7 @@ function Root() {
         <FastRenderingTextInput />
         <MemoizedExpensiveTree />
 
-        <h4>Closures?</h4>
+        <h4>Closures? - Fixed!</h4>
         <ClosureComponent />
       </Column>
 
