@@ -15,7 +15,8 @@ function PersonForm({ field }) {
             setIsEditing(false)
           }}
         >
-          <input type="text" />
+          <label htmlFor={`name-input-${field.id}`}>Name: </label>
+          <input id={`name-input-${field.id}`} type="text" />
           <button type="submit">Update</button>
         </form>
       ) : (
