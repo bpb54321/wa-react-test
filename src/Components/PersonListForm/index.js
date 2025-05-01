@@ -12,7 +12,7 @@ function PersonListForm() {
   ])
 
   function handlePush() {
-    setFields([{ name: faker.name.findName(), id: nanoid() }, ...fields])
+    setFields([...fields, { name: faker.name.findName(), id: nanoid() }])
   }
 
   return (
@@ -24,7 +24,7 @@ function PersonListForm() {
         {fields.map((field, index) => (
           <li key={index}>
             {field.name}:<br />
-            <input type="text" />
+            {/* <input type="text" /> */}
           </li>
         ))}
       </ol>
