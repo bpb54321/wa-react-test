@@ -13,7 +13,7 @@ import { makeClosureComponent } from '../ClosureComponent'
 import ExpensiveTree from '../ExpensiveTree'
 import FastRenderingTextInput from '../FastRenderingTextInput'
 import Pagination from '../Pagination'
-import PersonListForm from '../PersonListForm'
+import PersonList from '../PersonList'
 
 const POSTS_QUERY_LIMIT = 10
 const INITIAL_POSTS_PAGE = 1
@@ -79,7 +79,7 @@ function Root() {
 
       <Column>
         <h4>Incorrect form field behavior - Fixed!</h4>
-        <PersonListForm />
+        <PersonList />
       </Column>
     </Container>
   )

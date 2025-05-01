@@ -51,7 +51,7 @@ PersonForm.propTypes = {
   onUpdateName: PropTypes.func.isRequired,
 }
 
-function PersonListForm() {
+function PersonList() {
   const [fields, setFields] = useState([
     {
       name: faker.name.findName(),
@@ -94,4 +94,4 @@ function PersonListForm() {
   )
 }
 
-export default PersonListForm
+export default PersonList
