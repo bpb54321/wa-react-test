@@ -12,6 +12,7 @@ import { POST } from 'Router/routes'
 import { Column, Container, Post, PostAuthor, PostBody } from './styles'
 
 import ExpensiveTree from '../ExpensiveTree'
+import FastRenderingTextInput from '../FastRenderingTextInput'
 import Pagination from '../Pagination'
 
 const POSTS_QUERY_LIMIT = 10
@@ -25,8 +26,6 @@ function Root() {
       id: nanoid(),
     },
   ])
-
-  const [value, setValue] = useState('')
 
   const [postsPage, setPostsPage] = useState(INITIAL_POSTS_PAGE)
   const { data, loading } = useQuery(postsQuery, {
@@ -85,16 +84,8 @@ function Root() {
         )}
       </Column>
       <Column>
-        <h4>Slow rendering</h4>
-        <label>
-          Enter something here:
-          <br />
-          <input
-            value={value}
-            onChange={({ target }) => setValue(target.value)}
-          />
-        </label>
-        <p>So slow...</p>
+        <h4>Slow rendering - Fixed!</h4>
+        <FastRenderingTextInput />
         <ExpensiveTree />
 
         <h4>Closures?</h4>
