@@ -9,7 +9,7 @@ import { POST } from 'Router/routes'
 
 import { Column, Container, Post, PostAuthor, PostBody } from './styles'
 
-import ClosureComponent from '../ClosureComponent'
+import { makeClosureComponent } from '../ClosureComponent'
 import ExpensiveTree from '../ExpensiveTree'
 import FastRenderingTextInput from '../FastRenderingTextInput'
 import Pagination from '../Pagination'
@@ -19,6 +19,8 @@ const POSTS_QUERY_LIMIT = 10
 const INITIAL_POSTS_PAGE = 1
 
 const MemoizedExpensiveTree = memo(ExpensiveTree)
+const ClosureComponent1 = makeClosureComponent()
+const ClosureComponent2 = makeClosureComponent()
 
 function Root() {
   const [postsPage, setPostsPage] = useState(INITIAL_POSTS_PAGE)
@@ -71,7 +73,8 @@ function Root() {
         <MemoizedExpensiveTree />
 
         <h4>Closures? - Fixed!</h4>
-        <ClosureComponent />
+        <ClosureComponent1 />
+        <ClosureComponent2 />
       </Column>
 
       <Column>
