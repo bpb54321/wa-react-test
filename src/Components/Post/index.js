@@ -39,7 +39,7 @@ function Post() {
   const handleClick = () => history.push(ROOT)
 
   const handleSortEnd = ({ oldIndex, newIndex }) => {
-    setComments(arrayMove(comments, newIndex, oldIndex))
+    setComments(arrayMove(comments, oldIndex, newIndex))
   }
 
   const { data, loading } = useQuery(postQuery, { variables: { id: postId } })
@@ -72,7 +72,7 @@ function Post() {
           </Column>
 
           <Column>
-            <h4>Incorrect sorting</h4>
+            <h4>Incorrect sorting - Fixed!</h4>
             Comments:
             <SortableContainer onSortEnd={handleSortEnd}>
               {comments.map((comment, index) => (
