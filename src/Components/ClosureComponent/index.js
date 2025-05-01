@@ -3,24 +3,24 @@ import React, { useEffect, useState } from 'react'
 const INITIAL_COUNT = 0
 
 export function makeClosureComponent() {
-  let globalCount
+  let externalCount
 
   const ClosureComponent = () => {
     const [count, setCount] = useState(INITIAL_COUNT)
 
     useEffect(() => {
-      globalCount = INITIAL_COUNT
+      externalCount = INITIAL_COUNT
     }, [])
 
     function handleAlertClick() {
       setTimeout(() => {
-        alert(`You clicked ${globalCount} times`)
+        alert(`You clicked ${externalCount} times`)
       }, 2500)
     }
 
     function handleIncrementClick() {
       const incrementedCount = count + 1
-      globalCount = incrementedCount
+      externalCount = incrementedCount
       setCount(incrementedCount)
     }
 
