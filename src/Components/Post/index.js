@@ -19,6 +19,8 @@ import {
   PostContainer,
 } from './styles'
 
+import PostNavigation from '../PostNavigation'
+
 const SortableContainer = sortableContainer(({ children }) => (
   <div>{children}</div>
 ))
@@ -64,7 +66,7 @@ function Post() {
               <PostAuthor>by {post.user.name}</PostAuthor>
               <PostBody mt={2}>{post.body}</PostBody>
             </PostContainer>
-            <div>Next/prev here</div>
+            <PostNavigation currentPost={post} />
           </Column>
 
           <Column>

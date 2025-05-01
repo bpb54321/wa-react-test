@@ -65,6 +65,7 @@ function Root() {
           <div>
             {posts.map(post => (
               <Post key={post.id} mx={4}>
+                {/* TODO: Remove href prop */}
                 <NavLink href={POST(post.id)} to={POST(post.id)}>
                   {post.title}
                 </NavLink>
