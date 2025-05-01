@@ -12,6 +12,7 @@ import { POST } from 'Router/routes'
 import { Column, Container, Post, PostAuthor, PostBody } from './styles'
 
 import ExpensiveTree from '../ExpensiveTree'
+import Pagination from '../Pagination'
 
 const POSTS_QUERY_LIMIT = 10
 const INITIAL_POSTS_PAGE = 1
@@ -72,16 +73,14 @@ function Root() {
                 <PostBody>{post.body}</PostBody>
               </Post>
             ))}
-            {postsPage > INITIAL_POSTS_PAGE ? (
-              <button type="button" onClick={handlePreviousPostsPageClick}>
-                Previous Page
-              </button>
-            ) : null}
-            {postsPage * POSTS_QUERY_LIMIT < data?.posts.meta.totalCount ? (
-              <button type="button" onClick={handleNextPostsPageClick}>
-                Next Page
-              </button>
-            ) : null}
+            <Pagination
+              currentPage={postsPage}
+              initialPostsPage={INITIAL_POSTS_PAGE}
+              limit={POSTS_QUERY_LIMIT}
+              totalCount={data?.posts.meta.totalCount}
+              onNext={handleNextPostsPageClick}
+              onPrevious={handlePreviousPostsPageClick}
+            />
           </div>
         )}
       </Column>
