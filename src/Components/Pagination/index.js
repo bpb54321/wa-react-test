@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 function Pagination({
   currentPage,
   totalCount,
-  initialPostsPage,
+  initialPage,
   limit,
   onNext,
   onPrevious,
 }) {
   return (
     <div>
-      {currentPage > initialPostsPage ? (
+      {currentPage > initialPage ? (
         <button type="button" onClick={onPrevious}>
           Previous Page
         </button>
@@ -27,7 +27,7 @@ function Pagination({
 
 Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
-  initialPostsPage: PropTypes.number.isRequired,
+  initialPage: PropTypes.number.isRequired,
   limit: PropTypes.number.isRequired,
   totalCount: PropTypes.number.isRequired,
   onNext: PropTypes.func.isRequired,

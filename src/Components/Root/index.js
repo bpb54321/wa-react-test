@@ -58,7 +58,7 @@ function Root() {
             ))}
             <Pagination
               currentPage={postsPage}
-              initialPostsPage={INITIAL_POSTS_PAGE}
+              initialPage={INITIAL_POSTS_PAGE}
               limit={POSTS_QUERY_LIMIT}
               totalCount={data?.posts.meta.totalCount}
               onNext={handleNextPostsPageClick}
