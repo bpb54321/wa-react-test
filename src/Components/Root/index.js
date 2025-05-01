@@ -13,6 +13,9 @@ import { Column, Container, Post, PostAuthor, PostBody } from './styles'
 
 import ExpensiveTree from '../ExpensiveTree'
 
+const POSTS_QUERY_LIMIT = 10
+const INITIAL_POSTS_PAGE = 1
+
 function Root() {
   const [count, setCount] = useState(0)
   const [fields, setFields] = useState([
@@ -23,7 +26,14 @@ function Root() {
   ])
 
   const [value, setValue] = useState('')
-  const { data, loading } = useQuery(postsQuery)
+
+  const [postsPage, setPostsPage] = useState(INITIAL_POSTS_PAGE)
+  const { data, loading } = useQuery(postsQuery, {
+    variables: {
+      page: postsPage,
+      limit: POSTS_QUERY_LIMIT,
+    },
+  })
 
   function handlePush() {
     setFields([{ name: faker.name.findName(), id: nanoid() }, ...fields])
@@ -37,14 +47,24 @@ function Root() {
 
   const posts = data?.posts.data || []
 
+  const handleNextPostsPageClick = () => {
+    setPostsPage(currentPage => currentPage + 1)
+  }
+
+  const handlePreviousPostsPageClick = () => {
+    setPostsPage(currentPage => currentPage - 1)
+  }
+
   return (
     <Container>
       <Column>
         <h4>Need to add pagination</h4>
-        {loading
-          ? 'Loading...'
-          : posts.map(post => (
-              <Post mx={4}>
+        {loading ? (
+          'Loading...'
+        ) : (
+          <div>
+            {posts.map(post => (
+              <Post key={post.id} mx={4}>
                 <NavLink href={POST(post.id)} to={POST(post.id)}>
                   {post.title}
                 </NavLink>
@@ -52,7 +72,18 @@ function Root() {
                 <PostBody>{post.body}</PostBody>
               </Post>
             ))}
-        <div>Pagination here</div>
+            {postsPage > INITIAL_POSTS_PAGE ? (
+              <button type="button" onClick={handlePreviousPostsPageClick}>
+                Previous Page
+              </button>
+            ) : null}
+            {postsPage * POSTS_QUERY_LIMIT < data?.posts.meta.totalCount ? (
+              <button type="button" onClick={handleNextPostsPageClick}>
+                Next Page
+              </button>
+            ) : null}
+          </div>
+        )}
       </Column>
       <Column>
         <h4>Slow rendering</h4>
