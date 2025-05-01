@@ -75,7 +75,7 @@ function Root() {
       </Column>
 
       <Column>
-        <h4>Incorrect form field behavior</h4>
+        <h4>Incorrect form field behavior - Fixed!</h4>
         <PersonListForm />
       </Column>
     </Container>
