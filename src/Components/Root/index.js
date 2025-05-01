@@ -11,6 +11,7 @@ import { POST } from 'Router/routes'
 
 import { Column, Container, Post, PostAuthor, PostBody } from './styles'
 
+import ClosureComponent from '../ClosureComponent'
 import ExpensiveTree from '../ExpensiveTree'
 import FastRenderingTextInput from '../FastRenderingTextInput'
 import Pagination from '../Pagination'
@@ -21,7 +22,6 @@ const INITIAL_POSTS_PAGE = 1
 const MemoizedExpensiveTree = memo(ExpensiveTree)
 
 function Root() {
-  const [count, setCount] = useState(0)
   const [fields, setFields] = useState([
     {
       name: faker.name.findName(),
@@ -39,12 +39,6 @@ function Root() {
 
   function handlePush() {
     setFields([{ name: faker.name.findName(), id: nanoid() }, ...fields])
-  }
-
-  function handleAlertClick() {
-    setTimeout(() => {
-      alert(`You clicked ${count} times`)
-    }, 2500)
   }
 
   const posts = data?.posts.data || []
@@ -92,13 +86,7 @@ function Root() {
         <MemoizedExpensiveTree />
 
         <h4>Closures?</h4>
-        <p>You clicked {count} times</p>
-        <button type="button" onClick={() => setCount(count + 1)}>
-          Click me
-        </button>
-        <button type="button" onClick={handleAlertClick}>
-          Show alert
-        </button>
+        <ClosureComponent />
       </Column>
 
       <Column>
